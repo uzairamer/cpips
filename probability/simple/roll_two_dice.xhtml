@@ -12,7 +12,8 @@
      representation of the list, separates the last two elements with or'''
     return ' or '.join([', '.join(a_list[:-1]),a_list[-1]] if len(a_list) > 2 else a_list)
   
-  def compare(f1,f2,tol=0.0001):
+  def compare(f1,f2,tol=0.001):
+    '''Return true if the absolute difference between two floats is less than tolerance tol'''
     return abs(f1 - f2) &lt; tol
   
   def check_answer(expected,answer):
@@ -53,4 +54,4 @@
       the total number of outcomes. 
     </p> 
   </solution>
-  </problem>
+</problem>
