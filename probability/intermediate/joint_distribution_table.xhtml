@@ -1,0 +1,144 @@
+<problem>
+    <p>
+    Below is a table listing the probabilities of three binary random variables. 
+    In the empty table cells, fill in the correct values for each marginal or conditional probability.
+    Your answers will be evaluated to 4 decimal places, so you may find it easier to enter answers as expressions such as&#xA0;0.14&#x2217;0.08/2. 
+    The grader will evaluate these expressions maintaining full floating point precision.
+    </p>
+    <hr/>
+    <script type="loncapa/python">
+    from random import randint
+    from collections import Counter
+    def compare(f1,f2,tol=0.0001):
+      return abs(f1 - f2) &lt; tol
+      
+    def test_answer(expected,answer):
+      return compare(eval(answer.strip()),float(expected.strip()))
+        
+    def joint_distribution(num_vars, num_exp):
+      '''
+      Given num_vars binary random variables, this function returns
+      a randomized joint probability distribution for num_exp
+      experiments
+      '''
+      rand_bin_list = lambda n: tuple([randint(0, 1) for _ in range(n)])
+      outcomes = Counter([rand_bin_list(num_vars) for _ in range(num_exp)])
+      return { k:v/float(num_exp) for k,v in outcomes.items()}
+    
+    dist_table = joint_distribution(num_vars=3, num_exp=100)
+    
+    r00,r01,r02 = dist_table.items()[0][0]
+    r10,r11,r12 = dist_table.items()[1][0]
+    r20,r21,r22 = dist_table.items()[2][0]
+    r30,r31,r32 = dist_table.items()[3][0]
+    r40,r41,r42 = dist_table.items()[4][0]
+    r50,r51,r52 = dist_table.items()[5][0]
+    r60,r61,r62 = dist_table.items()[6][0]
+    r70,r71,r72 = dist_table.items()[7][0]
+    p00 = dist_table.items()[0][1]
+    p01 = dist_table.items()[1][1]
+    p02 = dist_table.items()[2][1]
+    p03 = dist_table.items()[3][1]
+    p04 = dist_table.items()[4][1]
+    p05 = dist_table.items()[5][1]
+    p06 = dist_table.items()[6][1]
+    p07 = dist_table.items()[7][1]
+    
+    #P(X0=1,X1=0,X2=1)
+    A0 = dist_table.get((1,0,1))
+    
+    #P(X0=0,X1=1)
+    A1 = dist_table.get((0,1,0)) + dist_table.get((0,1,1))
+    
+    #P(X2=0)
+    A2 = sum(v for x,v in dist_table.items() if x[2] == 0)
+      
+    #P(X1=0|X0=1) = P(X1=0,X0=1)/P(X0=1)
+    A3 = round(sum(v for x,v in dist_table.items() if x[1] == 0 and x[0] == 1) / sum(v for x,v in dist_table.items() if x[0] == 1),4)
+    
+    #P(X0=1,X1=0|X2=1) = P(X0=1,X1=0,X2=1)/P(X2=1)
+    A4 = round(dist_table.get((1,0,1)) / sum(v for x,v in dist_table.items() if x[2] == 1),4)
+    
+    #P(X0=1|X1=0,X2=1) = P(X0=1,PX1=0,PX2=1)/P(X1=0,X2=1)
+    A5 = round(dist_table.get((1,0,1)) / sum(v for x,v in dist_table.items() if x[1]==0 and x[2] == 1),4) 
+    </script>
+            <p>
+                <table border="2" cellpadding="10">
+                    <tr>
+                        <th>X0</th>
+                        <th>X1</th>
+                        <th>X2</th>
+                        <th>P(X0,X1,X2)</th>
+                    </tr>
+                    <tr>
+                        <td>$r00</td>
+                        <td>$r01</td>
+                        <td>$r02</td>
+                        <td>$p00</td>
+                    </tr>
+                    <tr>
+                        <td>$r10</td>
+                        <td>$r11</td>
+                        <td>$r12</td>
+                        <td>$p01</td>
+                    </tr>
+                    <tr>
+                        <td>$r20</td>
+                        <td>$r21</td>
+                        <td>$r22</td>
+                        <td>$p02</td>
+                    </tr>
+                    <tr>
+                        <td>$r30</td>
+                        <td>$r31</td>
+                        <td>$r32</td>
+                        <td>$p03</td>
+                    </tr>
+                    <tr>
+                        <td>$r40</td>
+                        <td>$r41</td>
+                        <td>$r42</td>
+                        <td>$p04</td>
+                    </tr>
+                    <tr>
+                        <td>$r50</td>
+                        <td>$r51</td>
+                        <td>$r52</td>
+                        <td>$p05</td>
+                    </tr>
+                    <tr>
+                        <td>$r60</td>
+                        <td>$r61</td>
+                        <td>$r62</td>
+                        <td>$p06</td>
+                    </tr>
+                    <tr>
+                        <td>$r70</td>
+                        <td>$r71</td>
+                        <td>$r72</td>
+                        <td>$p07</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+            <table>
+                <tbody>
+                    <tr><th>Expression</th><th>Value</th></tr>				
+                    <tr><td>P(X0=1,X1=0,X2=1)</td><td><customresponse cfn="test_answer" expect="$A0"><textline size="30" correct_answer="$A0" /></customresponse></td></tr>
+                    <tr><td>P(X0=0,X1=1)</td><td> <customresponse cfn="test_answer" expect="$A1"><textline size="30" correct_answer="$A1" /></customresponse></td></tr>
+                    <tr><td>P(X2=0)</td><td><customresponse cfn="test_answer" expect="$A2"><textline size="30" correct_answer="$A2" /></customresponse></td></tr>
+                    <tr><td>P(X1=0|X0=1)</td><td><customresponse cfn="test_answer" expect="$A3"><textline size="30" correct_answer="$A3" /></customresponse></td></tr>
+                    <tr><td>P(X0=1,X1=0|X2=1)</td><td><customresponse cfn="test_answer" expect="$A4"><textline size="30" correct_answer="$A4" /></customresponse></td></tr>
+                    <tr><td>P(X0=1|X1=0,X2=1)</td><td><customresponse cfn="test_answer" expect="$A5"><textline size="30" correct_answer="$A5" /></customresponse></td></tr>
+                </tbody>
+            </table>		
+            </p>
+            
+            <solution>
+                <div class="detailed-solution">
+                    <p>Explanation</p>
+                    <p>To answer this question correctly, you need to study what marginal, joint and conditional probability are</p>
+                </div>
+            </solution>
+    
+    </problem>
