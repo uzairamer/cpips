@@ -1,4 +1,4 @@
-# Custom Python-evaluated Input Problems
+# Custom Open edX Python-evaluated Input Problems
 
 ## Introduction
 
