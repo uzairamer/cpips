@@ -9,4 +9,4 @@ The Open edX platform allows course authors to create assessment problems with c
 
 ## Why this repo?
 
-This repository is an open source collection of custom pyton-evaluated input problems. Feel free to use them under the [MIT license](https://opensource.org/licenses/MIT). If you would like to contribute more problems, please fork this repo, add your problems and submit a pull request. 
+This repository is an open source collection of custom pyton-evaluated input problems on a variety of topics. For simplicity, the problems have been categorized in three levels: simple, intermediate and advanced. Feel free to use them under the [MIT license](https://opensource.org/licenses/MIT). If you would like to contribute more problems, please fork this repo, add your problems and submit a pull request. 
