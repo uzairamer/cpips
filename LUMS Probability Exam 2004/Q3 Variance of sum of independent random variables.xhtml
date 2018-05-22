@@ -1,0 +1,100 @@
+<!-- sheikh.qasim@gmail.com +923008540838  
+
+				LUMS Probability course exam 2004
+ -->
+<problem>
+<script type="loncapa/python">
+from random import randint 
+import math
+from scipy.stats import norm
+
+ 
+
+def compare(f1,f2,tol=0.0001):
+  return abs(f1 - f2) &lt; tol
+  
+def test_answer(expected,answer):
+  return compare(eval(answer.strip()),float(expected.strip()))  
+ 
+  
+Y0 = 2
+Y1 = 6
+
+Y2 = 100*randint(Y0,Y1) 
+Y3 = 10*randint(Y0,Y1)
+Y4 = 0.1*randint(Y0,Y1)
+Y5 =  0.02*randint(Y0,Y1)
+#Y2 = 250
+#Y3 = 20
+#Y4 = 0.5
+#Y5 = 0.1
+Y6 =int(Y2*Y3*Y4*(1+0.009*Y5**0.5))
+#Y6 = 2510
+Y7 = Y2*Y3
+Y8 = Y7*Y4
+Y9 = Y7*Y5*Y5
+Y10 = round(Y9**0.5,3)
+Y11 = (Y6-Y8)/(Y9**0.5)
+
+A_0 = round(1.0-norm.cdf(Y11),5)
+hpd = round(Y4/24,3)
+A_1 = round(math.exp(-Y2*hpd),3)
+
+
+
+</script>
+<p>
+In a warehouse widgets are packed into boxes.  Boxes are then loaded onto trucks.  <b>$Y2</b> widgets are packed into each box. <b>$Y3</b> boxes are loaded onto each truck. The weights of widgets are independent random variables with mean <b>$Y4</b> Kg and standard deviation <b>$Y5</b> Kg. Estimate the probability that the weight of all of the widgets on a truck is greater than <b>$Y6</b> Kg. 
+</p>
+<multiplechoiceresponse>
+    <label>Part a: Variance of sum of n independent random variable is</label>
+    
+    <choicegroup type="MultipleChoice">
+      <choice correct="false"><description>average of variances of n variables </description>
+        
+      </choice>
+      <choice correct="true"><description>sum of variances of n variables</description>
+        
+      </choice>
+      <choice correct="false"><description>product of variances of n variables</description>
+        
+      </choice>
+      <choice correct="false"><description>average of covariances of n variables</description>
+      </choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+
+  <p>Part b: Estimate the probability that the weight of all of the widgets on a truck is greater than <b>$Y6</b> Kg.</p>
+  <p>
+  <table>
+		<tbody>
+		  <tr>What is the total number of widgets</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y7"><textline size="30" correct_answer="$Y7"/></customresponse></tr>
+          <tr>What is the average weight of all widgets</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y8"><textline size="30" correct_answer="$Y8"/></customresponse></tr>
+          <tr>What is the estimated variance in weight of all widgets</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y9"><textline size="30" correct_answer="$Y9"/></customresponse></tr>
+          <tr>What is the estimated standard deviation in weight of all widgets</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y10"><textline size="30" correct_answer="$Y10"/></customresponse></tr>
+          <tr>What is the probability that the weight of all of the widgets on a truck is greater than <b>$Y6</b> Kg?</tr>
+		  <tr><customresponse cfn="test_answer" expect="$A_0"><textline size="30" correct_answer="$A_0"/></customresponse></tr>
+        </tbody>
+  </table>
+  </p> 
+  
+<solution>
+  <p><b>Explanation:</b></p>
+  <p>
+We are given mean weight and standard deviation in weight of widgets.  We know n, the total number of widgets.  Weights of widgets vary as independent random variables.  Since these random variables are independent mean wight and variance in weight of n wigets is just n times  mean and variance in weight of one widget.  Remember variance is square of standard deviation here.
+   </p>
+  <p>We will use centeral limit theorem and normal distribution for estimating probability of total weight of n widgets.</p>
+  <p> PDF for normal distribution is<description> \( f(x) = \frac {{1}}{{\sqrt {2 \pi }\sigma}} \) </description><description> \( e^ {- \frac{(x- \sigma)^2 }{2 \sigma}}  \)</description>   </p>
+  <p> The cumulative distribution function <description> \( \Phi (t) =  \int_{- \infty}^t  f(x) dx\)</description></p>
+  <p> 
+  probability that the weight of all of the widgets on a truck is greater than <b>$Y6</b> Kg is 1-\(\Phi(t)\) </p>
+  <p>
+    where t = ($Y6 -$Y8 )/$Y10
+  </p>
+ 
+</solution>
+</problem>
