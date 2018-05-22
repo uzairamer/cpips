@@ -1,0 +1,229 @@
+<!-- sheikh.qasim@gmail.com +923008540838  
+
+				EDX Course : Artificial Intelligence CS188 Berkeley				Topic : Search
+ -->
+<problem>
+<p>
+How many nodes are in the complete search tree for the given state space graph? The start state is S. You may find it helpful to draw out the search tree on a piece of paper.      
+</p>	
+
+<hr/>
+<script type="loncapa/python">
+from random import shuffle
+from random import randint
+from collections import deque
+import svgwrite
+
+
+
+
+def bfs_nocycle_svg(node_labels, graph, start):
+    level_dict = {}
+    level = 0
+    box_x = 600
+    box_y = 600
+    delta_y = 90    # Distance between layes in BFS for SVG
+#    delta_x = 80    # distance between nodes in tree at the same level
+    y_margin = 20
+    x_margin = 20
+
+    dq = deque()
+    dq_pos = deque()
+    v = start
+    dq.appendleft(v)
+    dq_pos.appendleft(y_margin)
+    full_tree = []
+
+    while dq:
+        vertex = dq.pop()
+        pos = dq_pos.pop()
+        # determine size of box for tree under this node
+        if int (pos/delta_y) > level:
+           level += 1
+
+        if str(level) in level_dict.keys():
+           list1 = level_dict[str(level)]
+           list1.append(vertex)
+        else:
+           level_dict.update({str(level):[vertex]})
+                
+        pos_y = pos+delta_y
+        vertex_txt = node_labels[int(vertex)]
+       
+        if vertex in graph.keys():
+           adj = graph[vertex]
+                      
+           for v in adj:
+              full_tree.append((vertex,v))
+              dq.appendleft(v)
+              dq_pos.appendleft(pos_y)
+    # From BFS level set information compute delta_x for each level
+    delta_x_dict = {}
+    for k in level_dict:
+        delta_x_dict.update({k:0.9*box_x/(len(level_dict[k])+1)})
+    node_position_dict = {}
+    dwg = svgwrite.Drawing(size=(str(box_x), str(box_y)))
+    #  for kint we display nodes in level kint+1
+    #  process level 0 seperately
+    kint = 0
+    k = str(kint)
+    level_set = level_dict[k]
+    level_delta_x = delta_x_dict[k]
+    level_ypos = y_margin+int(k)*delta_y
+    node_number = 1
+    for v in level_set:
+        x_pos = x_margin+node_number*level_delta_x
+        dwg.add(dwg.circle(center=(x_pos,level_ypos), r=15, stroke='black', fill = 'white'))
+        vertex_txt = node_labels[int(v)]
+        dwg.add(dwg.text(vertex_txt, insert=(x_pos-4,level_ypos+3), fill='black'))
+            
+    for kint in range (0,len(level_dict.keys())):
+        k = str(kint)
+        next_k = str(kint+1)
+        level_set = level_dict[k]
+        level_delta_x = delta_x_dict[k]
+        level_ypos = y_margin+int(k)*delta_y
+        next_level_ypos = y_margin+(kint+1)*delta_y
+        if next_k in delta_x_dict.keys():
+           next_level_delta_x = delta_x_dict[next_k]
+        else:
+           next_level_delta_x = x_margin
+        node_number = 1
+        next_node_number = 1
+        for v in level_set:
+            x_pos = x_margin+node_number*level_delta_x
+            node_number += 1
+            if v in graph.keys():
+               adj = graph[v]            
+               for vertex in adj:
+                  this_x_pos = x_margin+next_node_number*next_level_delta_x
+                  dwg.add(dwg.circle(center=(this_x_pos,next_level_ypos), r=15, stroke='black', fill = 'white'))       
+                  vertex_txt = node_labels[int(vertex)]
+                  dwg.add(dwg.text(vertex_txt, insert=(this_x_pos-4,next_level_ypos+3), fill='black'))
+                  line = dwg.line(start=(x_pos, level_ypos+14), end=(this_x_pos-3, next_level_ypos-14), stroke='#000', stroke_width=1)
+                  dwg.add(line)
+                  next_node_number += 1
+                  print ('level: ',next_k, ' node: ',vertex_txt, ' x: ', this_x_pos,' delta_x: ',next_level_delta_x)                            
+  
+    dwgstring = dwg.tostring()
+
+    return full_tree, dwgstring
+
+
+internal_nodes = ['S','A','B','C','G','D']
+
+#shuffle(internal_nodes)
+node1 = internal_nodes[1]
+node2 = internal_nodes[2]
+node3 = internal_nodes[3]
+node5 = internal_nodes[5]
+graph = [(0, 1),(0, 2),(0,3), (0,5), (1,2), (1,5),(1,4), (2,3),(2,4),(3,4), (5,2)]
+bl = 'black'
+cl = [bl,bl,bl,bl,bl,bl,bl,bl,bl,bl,bl]
+ar = 'arrow'  
+ep = [ar,ar,ar,ar,ar,ar,ar,ar,ar,ar,ar]
+ 
+ind1 = randint(1,len(graph)-1)
+del graph[ind1]
+cl[ind1] = ''
+ep[ind1] = ''
+ind2 = randint(1,len(graph)-1)
+del graph[ind2]
+cl[ind2] = ''
+ep[ind2] = ''
+
+cl01 = cl[0]
+ep01 = ep[0]
+cl02 = cl[1]
+ep02 = ep[1]
+cl03 = cl[2]
+ep03 = ep[2]
+cl05 = cl[3]
+ep05 = ep[3]
+cl12 = cl[4]
+ep12 = ep[4]
+cl14 = cl[5]
+ep14 = ep[5]
+cl23 = cl[7]
+ep23 = ep[7]
+cl24 = cl[8]
+ep24 = ep[8]
+cl34 = cl[9]
+ep34 = ep[9]
+cl52 = cl[10]
+ep52 = ep[10]
+cl15 = cl[6]
+ep15 = ep[6]
+
+graph_dict = {}
+for p in graph:
+    if str(p[0]) in graph_dict.keys():
+        list1 = graph_dict[str(p[0])]
+        list1.append(str(p[1]))
+    else:
+        graph_dict.update({str(p[0]):[str(p[1])]})
+bfstree, dwgstring = bfs_nocycle_svg (internal_nodes,graph_dict,'0')
+A = len(bfstree)+1
+  
+
+def check_answer(expect, ans):  
+  return int(ans) == int(expect) 
+</script>
+<p>
+	<svg height="260" width="230">
+      <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="1" refY="5"
+        markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" />
+    </marker>
+  </defs>
+
+          <rect width="100%" height="100%" fill="#eee"/>
+          <circle cx="70" cy="35" r="15" style="fill:white;stroke:black;stroke-width:1" />
+          <circle cx="200" cy="95" r="15" style="fill:white;stroke:black;stroke-width:1" />
+          <circle cx="128" cy="95" r="15" style="fill:white;stroke:black;stroke-width:1" />
+          <circle cx="70" cy="145" r="15" style="fill:white;stroke:black;stroke-width:1" />
+      <circle cx="15" cy="230" r="15" style="fill:white;stroke:black;stroke-width:1" />
+      <circle cx="70" cy="230" r="15" style="fill:white;stroke:black;stroke-width:1" /> 
+      <line x1="69" y1="159" x2="69" y2="210" style="stroke:$cl24;stroke-width:1"  marker-end="url(#$ep24)"/>
+       <line x1="62" y1="50" x2="10" y2="210" style="stroke:$cl03;stroke-width:1"  marker-end="url(#$ep03)"/>
+      <line x1="72" y1="50" x2="72" y2="124" style="stroke:$cl02;stroke-width:1"  marker-end="url(#$ep02)"/>
+      <line x1="120" y1="106" x2="85" y2="133" style="stroke:$cl52;stroke-width:1"  marker-end="url(#$ep52)"/>
+      <line x1="80" y1="45" x2="190" y2="78" style="stroke:$cl01;stroke-width:1"  marker-end="url(#$ep01)"/>
+      <line x1="186" y1="96" x2="146" y2="96" style="stroke:$cl15;stroke-width:1"  marker-end="url(#$ep15)"/>
+      
+      <line x1="76" y1="47" x2="125" y2="77" style="stroke:$cl05;stroke-width:1"  marker-end="url(#$ep05)"/>
+      <line x1="197" y1="110" x2="87" y2="225" style="stroke:$cl14;stroke-width:1"  marker-end="url(#$ep14)"/>
+      <line x1="188" y1="106" x2="92" y2="139" style="stroke:$cl12;stroke-width:1"  marker-end="url(#$ep12)"/>
+      
+      <line x1="60" y1="157" x2="20" y2="210" style="stroke:$cl23;stroke-width:1"  marker-end="url(#$ep23)"/>
+      <line x1="32" y1="230" x2="52" y2="230" style="stroke:$cl34;stroke-width:1"  marker-end="url(#$ep34)"/>     
+                    
+          <text x="68" y="40" fill="black">S</text>
+          <text x="63" y="150" fill="black">$node2</text>
+          <text x="11" y="233" fill="black">$node3</text>
+          <text x="194" y="100" fill="black">$node1</text> 
+          <text x="124" y="100" fill="black">$node5</text> 
+          <text x="66" y="233" fill="black">G</text> 
+                        
+      </svg>  
+  </p>	
+  <table><tr>
+  <customresponse cfn="check_answer" expect="$A">
+    <td>
+      <label>Number of nodes in the complete search tree</label>
+      <textline size="10" correct_answer="$A" label="A"/>
+    </td>
+  </customresponse>
+  
+    </tr></table>
+  <solution>
+	<div class="detailed-solution">
+				<p>Explanation</p>
+				<p>Complete serach tree is drawn below.  Important thing to note is that there are repeated nodes and this tree will not be finite in presence of directed cycles.</p>
+    <div>
+      $dwgstring
+    </div>
+ </div>
+  </solution>
+</problem>
