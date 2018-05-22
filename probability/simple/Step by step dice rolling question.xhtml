@@ -1,0 +1,67 @@
+<problem>
+<script type="loncapa/python">
+from random import randint  
+def inputs(sides):
+  '''Given the number of sides of a die, this randomly splits the 
+    list of outcomes from rolling a die, into two lists'''
+  split_at = randint(1,sides-1) 
+  return range(1,sides+1)[:split_at],range(1,sides+1)[split_at:]
+  
+def stringify(a_list):
+  '''Given a python list, this returns a comma separated string 
+   representation of the list, separates the last two elements with or'''
+  return ' or '.join([', '.join(a_list[:-1]),a_list[-1]] if len(a_list) > 2 else a_list)
+def compare(f1,f2,tol=0.0001):
+  return abs(f1 - f2) &lt; tol
+  
+def test_answer(expected,answer):
+  return compare(eval(answer.strip()),float(expected.strip()))  
+x1,x2 = inputs(4)
+x1_str = stringify(map(str,x1))
+x2_str = stringify(map(str,x2))
+
+all_pairs = [[a,b] for a in x1 for b in range(1,7)]
+all_values = [x[0]+x[1] for x in all_pairs]
+
+x3 = all_values[randint(1,len(all_values)-2)]
+answer = sum(x >= x3 for x in all_values) /  len(all_values)
+A0 = 6*4
+A1 = len(all_pairs)
+A2 = sum(x >= x3 for x in all_values)
+A3 = round(A2/A1,2)
+
+</script>
+
+<p>
+ We want to roll a 4-sided dice and a 6-sided dice. Given that the 4-sided dice has a result of <b>$x1_str</b> 
+(but not <b>$x2_str</b>), find the conditional probability that the sum of the two dice is <b>$x3</b> 
+or larger. 
+</p>
+<p>
+
+  <table>
+			<tbody>
+				<tr><th>Question</th><th>Answer</th></tr>				
+				<tr><td>What is the total number of outcomes for rolling the two dice when all outcomes are pssible for each dice</td><td><customresponse cfn="test_answer" expect="$A0"><textline size="30" correct_answer="$A0" label="P(X0=1,X1=0,X2=1)" /></customresponse></td></tr>						
+              <tr><td>What is the number of outcomes for rolling two dice if the 4-sided dice has a result of <b>$x1_str</b> 
+(but not <b>$x2_str</b>)</td><td> <customresponse cfn="test_answer" expect="$A1"><textline size="30" correct_answer="$A1" /></customresponse></td></tr>
+				<tr><td>For the case when 4-sided dice has restrictions, how many of outcomes sum equal to or greater than <b>$x3</b></td><td><customresponse cfn="test_answer" expect="$A2"><textline size="30" correct_answer="$A2" /></customresponse></td></tr>
+ <tr><td>Given that the 4-sided dice has a result of <b>$x1_str</b> 
+(but not <b>$x2_str</b>), find the conditional probability that the sum of the two dice is <b>$x3</b> 
+or larger</td><td><customresponse cfn="test_answer" expect="$A3"><textline size="30" correct_answer="$A3" /></customresponse></td></tr>
+				
+				
+			</tbody>
+		</table>
+ 
+		</p>
+<solution>
+  <p><b>Explanation:</b></p>
+  <p>
+  Here are all the possible outcomes of this experiment:
+   </p>
+  <p>$all_pairs</p>
+  <p>You can divide the number of outcomes matching the condition, sum of the two dice is <b>$x3</b> 
+or larger , by the total number of outcomes </p> 
+</solution>
+</problem>
