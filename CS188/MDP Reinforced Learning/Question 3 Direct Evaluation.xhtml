@@ -1,0 +1,483 @@
+<!-- Ahmed Ismail Khalid								Zulqarnain
+	 150829												150913
+	 BSCS VI-B											BSCS VI-B
+     ahmedik95316@gmail.com								mustafa.zulqarnain123@gmail.com
+     150829@students.au.edu.pk							150909@students.au.edu.pk
+	 sheikh.qasim@gmail.com  +923008540838
+	 
+
+				EDX Course : Artificial Intelligence				Topic : Reinforcement Learning
+ -->
+
+
+<problem>
+
+<img src="/static/hw5_q1.png" width="300" align="middle"/>
+  
+<br/><br/><br/><br/>
+  
+<p><b>Conisder the observed episodes below :</b></p>
+<br/>
+
+<script type="loncapa/python">
+import random
+import numpy as np
+
+###################
+##Episode 1 Table##
+###################
+e1_a_south_c_r = np.random.uniform(-2,1)
+e1_c_south_e_r = np.random.uniform(-2,1)
+e1_e_exit_x_r = [+10,+15,+20]
+
+E1_A_SOUTH_C_R = round(e1_a_south_c_r,1)
+E1_C_SOUTH_E_R = round(e1_c_south_e_r,1)
+E1_E_EXIT_X_R = random.choice(e1_e_exit_x_r)
+
+#string1 = str(float(E1_A_SOUTH_C_R))
+#string2 = str(float(E1_C_SOUTH_E_R))
+#string3 = str(float(E1_E_EXIT_X_R))
+
+#String1 = str(float(E1_A_SOUTH_C_R))
+#String2 = str(float(E1_C_SOUTH_E_R))
+#String3 = str(float(E1_E_EXIT_X_R))
+
+#STRING1 = float(String1)
+#STRING2 = float(String2)
+#STRING3 = float(String3)
+
+#ANSWER = STRING1 + STRING2 + STRING3
+#ANSWERsmall = string1 + string2 + string3
+# convert each variable to string and then add
+
+###################
+##Episode 2 Table##
+###################
+e2_b_east_c_r = np.random.uniform(-2,1)
+e2_c_south_d_r = np.random.uniform(-2,1)
+e2_d_exit_x_r = [-10,-15,-20]
+
+E2_B_EAST_C_R = round(e2_b_east_c_r,1)
+E2_C_SOUTH_D_R = round(e2_c_south_d_r,1)
+E2_D_EXIT_X_R = random.choice(e2_d_exit_x_r)
+
+###################
+##Episode 3 Table##
+###################
+e3_b_east_c_r = e2_b_east_c_r
+e3_c_south_e_r = e1_c_south_e_r
+
+E3_B_EAST_C_R = round(e3_b_east_c_r,1)
+E3_C_SOUTH_E_R = round(e3_c_south_e_r,1)
+E3_E_EXIT_X_R = E1_E_EXIT_X_R
+
+###################
+##Episode 4 Table##
+###################
+e4_a_south_c_r = e1_a_south_c_r
+e4_c_south_e_r = e1_c_south_e_r
+
+E4_A_SOUTH_C_R = round(e4_a_south_c_r,1)
+E4_C_SOUTH_E_R = round(e4_c_south_e_r,1)
+E4_E_EXIT_X_R = E1_E_EXIT_X_R
+
+##################
+##    Answers   ##
+##################
+va = ((E1_A_SOUTH_C_R + E1_C_SOUTH_E_R + E1_E_EXIT_X_R) * 0.5) + ((E4_A_SOUTH_C_R +E4_C_SOUTH_E_R + E4_E_EXIT_X_R +E1_E_EXIT_X_R) * 0.5)
+VA = round(va,2)
+
+vb = ((E2_B_EAST_C_R + E2_C_SOUTH_D_R + E2_D_EXIT_X_R) * 0.5) + ((E3_B_EAST_C_R + E3_C_SOUTH_E_R + E3_E_EXIT_X_R) * 0.5)
+VB = round(vb,2)
+
+#vc1 = (E1_C_SOUTH_E_R + E1_E_EXIT_X_R) * 0.75
+#vc2 = (E2_C_SOUTH_D_R + E2_D_EXIT_X_R) * 0.25
+#vc = vc1 + vc2
+#VC = round(vc,2)
+
+vd = 0
+VD = 0
+
+ve = 0
+VE = 0
+
+
+
+###################################
+## C TO NEXT STATE RANDOMIZATION ##
+###################################
+generate = ["D","E"]                                                                                                                         
+
+e1_e_exit_x_r = [+10,+15,+20]
+E1_E_EXIT_X_R = random.choice(e1_e_exit_x_r)
+e2_d_exit_x_r = [-10,-15,-20]
+E2_D_EXIT_X_R = random.choice(e2_d_exit_x_r)
+
+                                                                                                                                             
+c_ns1 = random.choice(generate)                                                                                                              
+c_ns2 = random.choice(generate)                                                                                                              
+c_ns3 = random.choice(generate)                                                                                                              
+c_ns4 = random.choice(generate)
+
+c_ns_d_r = round((np.random.uniform(-2,1)),1)
+c_ns_e_r = round((np.random.uniform(-2,1)),1)
+
+C_NS1_R = ""
+C_NS2_R = ""
+C_NS3_R = ""
+C_NS4_R = ""
+
+# what will the last observation be and what will it's reward be?
+E1_T3_NS = ""
+E2_T3_NS = ""
+E3_T3_NS = ""
+E4_T3_NS = ""
+
+E1_T3_NS_R = ""
+E2_T3_NS_R = ""
+E3_T3_NS_R = ""
+E4_T3_NS_R = ""
+
+c_ns1_c_r = np.random.uniform(-2,1)
+c_ns1_d_r = np.random.uniform(-2,1)
+c_ns2_c_r = np.random.uniform(-2,1)
+c_ns2_d_r = np.random.uniform(-2,1)
+c_ns3_c_r = np.random.uniform(-2,1)
+c_ns3_d_r = np.random.uniform(-2,1)
+c_ns4_c_r = np.random.uniform(-2,1)
+c_ns4_d_r = np.random.uniform(-2,1)
+
+C_NS1 = ""
+C_NS2 = ""
+C_NS3 = ""
+C_NS4 = ""
+
+C_NS1_D_R = 0
+C_NS2_D_R = 0
+C_NS3_D_R = 0
+C_NS4_D_R = 0
+
+C_NS1_E_R = 0
+C_NS2_E_R = 0
+C_NS3_E_R = 0
+C_NS4_E_R = 0
+
+C_NSD = 0
+C_NSE = 0
+
+
+countCD = 0
+countCE = 0
+countD = 0
+countE = 0
+                                                                                                                                             
+if (c_ns1 == "D") :
+    C_NS1 = "D"                            
+    C_NS1_R = c_ns_d_r
+    countD = countD + 1
+    E1_T3_NS = "D"
+    E1_T3_NS_R = E2_D_EXIT_X_R
+    C_NS1_D_R = E1_T3_NS_R
+elif (c_ns1 == "E") :
+    C_NS1 = "E"                                                                                         
+    C_NS1_R = c_ns_e_r
+    E1_T3_NS = "E"
+    E1_T3_NS_R = E1_E_EXIT_X_R
+    C_NS1_E_R = E1_T3_NS_R
+                                                                                                                                             
+                                                                                                                                             
+if (c_ns2 == "D") :
+    C_NS2 = "D"                        
+    C_NS2_R = c_ns_d_r
+    countD = countD + 1
+    E2_T3_NS = "D"
+    E2_T3_NS_R = E2_D_EXIT_X_R
+    C_NS2_D_R = E2_T3_NS_R
+elif (c_ns2 == "E") :
+    C_NS2 = "E"
+    C_NS2_R = c_ns_e_r
+    E2_T3_NS = "E" 
+    E2_T3_NS_R = E1_E_EXIT_X_R
+    C_NS2_E_R = E2_T3_NS_R
+                                                                                                                                             
+if (c_ns3 == "D") :
+    C_NS3 = "D"
+    C_NS3_R = c_ns_d_r                               
+    countD = countD + 1
+    E3_T3_NS = "D"
+    E3_T3_NS_R = E2_D_EXIT_X_R
+    C_NS3_D_R = E3_T3_NS_R
+elif (c_ns3 == "E") :
+    C_NS3 = "E"   
+    C_NS3_R = c_ns_e_r
+    E3_T3_NS = "E"
+    E3_T3_NS_R =  E1_E_EXIT_X_R    
+    ve3 = E3_T3_NS_R
+    C_NS3_E_R = E3_T3_NS_R
+                                                                                                                                             
+if (c_ns4 == "D") :
+    C_NS4 = "D"
+    C_NS4_R = c_ns_d_r
+    countD = countD + 1                         
+    E4_T3_NS = "D"
+    E4_T3_NS_R = E2_D_EXIT_X_R
+    C_NS4_D_R = E4_T3_NS_R
+elif (c_ns4 == "E") :
+    C_NS4 = "E"     
+    C_NS4_R = c_ns_e_r
+    E4_T3_NS = "E"
+    E4_T3_NS_R = E1_E_EXIT_X_R
+    C_NS4_E_R = E4_T3_NS_R
+    
+    
+if (C_NS1_R == -0.0) :
+    C_NS1_R = 0
+    
+if (C_NS2_R == -0.0) :
+    C_NS2_R = 0
+
+if (C_NS3_R == -0.0) :
+    C_NS3_R = 0
+    
+if (C_NS4_R == -0.0) :
+    C_NS24_R = 0
+
+
+if (E1_T3_NS == "D" or E2_T3_NS == "D" or E3_T3_NS == "D" or E4_T3_NS == "D") :
+    vd = E2_D_EXIT_X_R
+
+if (E1_T3_NS == "E" or E2_T3_NS == "E" or E3_T3_NS == "E" or E4_T3_NS == "E") :
+    ve = E1_E_EXIT_X_R
+    
+    
+    
+if (C_NS1 == "D" or C_NS2 == "D" or C_NS3 == "D" or C_NS4 == "D") :
+    countCD = countCD + 1
+elif (C_NS1 == "E" or C_NS2 == "E" or C_NS3 == "E" or C_NS4 == "E") :
+    countCE = countCE + 1
+    
+    
+#################################################
+
+if (C_NS1 == "D" and C_NS2 == "D" and C_NS3 == "D" and C_NS4 == "D") :
+    C_NSD = C_NS1_R + C_NS2_R + C_NS3_R + C_NS4_R
+    
+elif (C_NS1 == "D" and C_NS2 == "D" and C_NS3 == "D") :
+    C_NSD = C_NS1_R + C_NS2_R + C_NS3_R
+    
+elif (C_NS1 == "D" and C_NS2 == "D") :
+    C_NSD = C_NS1_R + C_NS2_R
+    
+elif (C_NS1 == "D") :
+    C_NSD = C_NS1_R
+    
+elif (C_NS1 == "D" and C_NS3 == "D") :
+    C_NSD = C_NS1_R + C_NS3_R
+
+elif (C_NS1 == "D" and C_NS4 == "D") :
+    C_NSD = C_NS1_R + C_NS4_R
+    
+elif (C_NS2 == "D" and C_NS3 == "D") :
+    C_NSD = C_NS2_R + C_NS3_R
+    
+elif (C_NS2 == "D" and C_NS4 == "D") :
+    C_NSD = C_NS2_R + C_NS4_R
+    
+elif (C_NS3 == "D" and C_NS4 == "D") :
+    C_NSD = C_NS3_R + C_NS4_R
+
+
+if (C_NS1 == "E" and C_NS2 == "E" and C_NS3 == "E" and C_NS4 == "E") :
+    C_NSE = C_NS1_R + C_NS2_R + C_NS3_R + C_NS4_R
+    
+elif (C_NS1 == "E" and C_NS2 == "E" and C_NS3 == "E") :
+    C_NSE = C_NS1_R + C_NS2_R + C_NS3_R
+    
+elif (C_NS1 == "E" and C_NS2 == "E") :
+    C_NSE = C_NS1_R + C_NS2_R
+    
+elif (C_NS1 == "E") :
+    C_NSE = C_NS1_R
+    
+elif (C_NS1 == "E" and C_NS3 == "E") :
+    C_NSE = C_NS1_R + C_NS3_R
+
+elif (C_NS1 == "E" and C_NS4 == "E") :
+    C_NSE = C_NS1_R + C_NS4_R
+    
+elif (C_NS2 == "" and C_NS3 == "E") :
+    C_NSE = C_NS2_R + C_NS3_R
+    
+elif (C_NS2 == "E" and C_NS4 == "E") :
+    C_NSE = C_NS2_R + C_NS4_R
+    
+elif (C_NS3 == "E" and C_NS4 == "D") :
+    C_NSE = C_NS3_R + C_NS4_R
+    
+
+c_ns_cd_count = countCD/4
+c_ns_ce_count = 1 - countCD
+c_ns_d_count = countD/4
+c_ns_e_count = 1 - c_ns_d_count
+
+
+VD = vd
+VE = ve
+
+vc = (C_NSD * c_ns_cd_count) + (C_NSE * c_ns_ce_count)
+VC = round(vc,2)
+  
+</script>
+
+<style>
+
+table {
+    border: 1px solid black;
+      display: inline-block;
+}
+
+td {
+    border: none;
+}
+
+</style>
+  
+<table>
+<caption><b>Episode 1</b></caption>
+<tr>
+  <td><b>A,</b></td>
+  <td><b>south,</b></td>
+  <td><b>C,</b></td>
+  <td><b>$E1_A_SOUTH_C_R</b></td>
+</tr>
+<tr>
+  <td><b>C,</b></td>
+  <td><b>south,</b></td>
+  <td><b>$C_NS1</b></td>
+  <td><b>$C_NS1_R</b></td>
+</tr>
+<tr>
+  <td><b>$E1_T3_NS,</b></td>
+  <td><b>exit,</b></td>
+  <td><b>X,</b></td>
+  <td><b>$E1_T3_NS_R</b></td>
+</tr>
+</table>
+
+<table>
+<caption><b>Episode 2</b></caption>
+<tr>
+  <td><b>B,</b></td>
+  <td><b>east,</b></td>
+  <td><b>C,</b></td>
+  <td><b>$E2_B_EAST_C_R</b></td>
+</tr>
+<tr>
+  <td><b>C,</b></td>
+  <td><b>south,</b></td>
+  <td><b>$C_NS2,</b></td>
+  <td><b>$C_NS2_R</b></td>
+</tr>
+<tr>
+  <td><b>$E2_T3_NS,</b></td>
+  <td><b>exit,</b></td>
+  <td><b>X,</b></td>
+  <td><b>$E2_T3_NS_R</b></td>
+</tr>
+</table>
+
+<table>
+<caption><b>Episode 3</b></caption>
+<tr>
+  <td><b>B,</b></td>
+  <td><b>east,</b></td>
+  <td><b>C,</b></td>
+  <td><b>$E3_B_EAST_C_R</b></td>
+</tr>
+<tr>
+  <td><b>C,</b></td>
+  <td><b>south,</b></td>
+  <td><b>$C_NS3,</b></td>
+  <td><b>$C_NS3_R</b></td>
+</tr>
+<tr>
+  <td><b>$E3_T3_NS,</b></td>
+  <td><b>exit,</b></td>
+  <td><b>X,</b></td>
+  <td><b>$E3_T3_NS_R</b></td>
+</tr>
+</table>
+
+<table>
+<caption><b>Episode 4</b></caption>
+<tr>
+  <td><b>A,</b></td>
+  <td><b>south,</b></td>
+  <td><b>C,</b></td>
+  <td><b>$E4_A_SOUTH_C_R</b></td>
+</tr>
+<tr>
+  <td><b>C,</b></td>
+  <td><b>south,</b></td>
+  <td><b>$C_NS4,</b></td>
+  <td><b>$C_NS4_R</b></td>
+</tr>
+<tr>
+  <td><b>$E4_T3_NS,</b></td>
+  <td><b>exit,</b></td>
+  <td><b>X,</b></td>
+  <td><b>$E4_T3_NS_R</b></td>
+</tr>
+</table>
+
+<br/><br/><br/><br/>
+
+<b>What are the estimates for the following quantities as obtained by direct evaluation :</b>
+
+<br/>
+
+<b>\(\hat{V}^\pi(A) = \)</b>
+<numericalresponse answer="$VA" type="ci" >
+  <textline size="20"/>
+  <solution>
+    <div class="detailed-solution">
+      <p>To find \(\hat{V}^\pi(A) \) we first look at all the episodes to find instances where we are on State A. These instances can be found in episodes 1 and 4. Since there are only 2 episodes where we find ourselves on State A, and each episode has equal proabibility to go from C to D and C to E, hence we will assign each of the episodes a weightage of 50% or 0.5. Next we simply add all the rewards for the respected episodes, multiple the total of each episode by its weightage to obtain the total rewards for that episode and then just add the total rewards for both episodes. Notice we can only go to State C from State A</p>
+    </div>
+  </solution>      
+</numericalresponse>
+
+<br/><br/>
+
+<b>\(\hat{V}^\pi(B) = \)</b>
+<numericalresponse answer="$VB" type="ci" >
+  <textline size="20"/>
+  <solution>
+    <div class="detailed-solution">
+      <p>To find \(\hat{V}^\pi(B)\) we first look at all the episodes to find instances where we are on State A. These instances can be found in episodes 2 and 3. Since there are only 2 episodes where we find ourselves on State B, and each episode has equal proabibility to go from C to D and C to E, hence we will assign each of the episodes a weightage of 50% or 0.5. Next we simply add all the rewards for the respected episodes, multiple the total of each episode by its weightage to obtain the total rewards for that episode and then just add the total rewards for both episodes. Notice we can only go to State C from State B</p>
+    </div>
+  </solution>  
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(C) = \)</b>
+<numericalresponse answer="$VC" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(D) = \)</b>
+<numericalresponse answer="$VD" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(E) = \)</b>
+<numericalresponse answer="$VE" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+
+</problem>

@@ -1,0 +1,82 @@
+<!-- Ahmed Ismail Khalid								Zulqarnain
+	 150829												150913
+	 BSCS VI-B											BSCS VI-B
+     ahmedik95316@gmail.com								mustafa.zulqarnain123@gmail.com
+     150829@students.au.edu.pk							150909@students.au.edu.pk
+     sheikh.qasim@gmail.com  +923008540838	 
+
+				EDX Course : Artificial Intelligence				Topic : Reinforcement Learning
+ -->
+
+
+<problem>
+
+Consider the gridworld shown below. The left panel shows the name of each state A through E. The middle panel shows the current estimate of the value function \(V^\pi\) for each state. A transition is observed, that takes the agent from state B through taking action east into state C, and the agent receives a reward of -2. Assuming \(\gamma = 1, \alpha = \frac{1}{2}\), a living penalty of -2 and the state transitions what are the value estimates after the TD learning update? (note: the value will change for one of the states only)
+
+<br/><br/><br/><br/>
+
+<img src="/static/hw5_q4.png" width="900" />
+
+
+<br/><br/>
+
+<b>\(\hat{V}^\pi(A) = \)</b>
+<numericalresponse answer="1" type="ci" >
+  <textline size="20"/>
+  <div class="detailed-solution">
+    <solution>
+      <p>Since there is no observed transition <b>TO OR FROM A</b> hence the value will not change</p>
+    </solution>
+  </div>
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(B) = \)</b>
+<numericalresponse answer="4" type="ci" >
+  <textline size="20"/>
+   <div class="detailed-solution">
+    <solution>
+      <p>Since there is only one observed transition <b>FROM B TO C</b> hence only the value for B will change</p>
+    </solution>
+  </div>
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(C) = \)</b>
+<numericalresponse answer="8" type="ci" >
+  <textline size="20"/>
+   <div class="detailed-solution">
+    <solution>
+      <p>Since there is no observed transition <b>TO OR FROM C</b> hence the value will not change</p>
+    </solution>
+  </div>
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(D) = \)</b>
+<numericalresponse answer="10" type="ci" >
+  <textline size="20"/>
+   <div class="detailed-solution">
+    <solution>
+      <p>Since there is no observed transition <b>TO OR FROM D</b> hence the value will not change</p>
+    </solution>
+  </div>
+</numericalresponse>
+
+<br/>
+
+<b>\(\hat{V}^\pi(E) = \)</b>
+<numericalresponse answer="10" type="ci" >
+  <textline size="20"/>
+   <div class="detailed-solution">
+    <solution>
+      <p>Since there is no observed transition <b>TO OR FROM E</b> hence the value will not change</p>
+    </solution>
+  </div>
+</numericalresponse>
+
+
+</problem>

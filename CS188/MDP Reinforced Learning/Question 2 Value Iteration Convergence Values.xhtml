@@ -1,0 +1,148 @@
+<!-- Name : Hamza   							Name : Abdullah Gull-->
+<!-- Email_Uni_Id : 150884@students.au.edu.pk   Email_Uni_Id :150860@students.au.edu.pk-->
+<!-- Email_Personal :irshadhamza54@gmail.com    Email_Uni_Id :150860@students.au.edu.pk-->
+<!-- Email_Personal :sheikh.qasim@gmail.com        -->
+<!-- Contact_no : +923008540838		-->
+<!-- Contact_no : +923208824668				    Contact_no : +923043047518-->
+<!-- Project EDX Arbisoft						MDP Questions 	 -->
+
+<problem>
+<script type="loncapa/python">
+import random
+Left_exit_Num=random.randint(9,20)
+Right_exit_Num=random.randint(1,8)
+Gamma=round(random.uniform(0.0,1.0),1)
+Va=(Left_exit_Num+(Gamma*0))
+Vb=(0+(Gamma*Va))
+Vc=(0+(Gamma*Vb))
+Vd=(max (0+(Gamma*Vc),0+(Gamma*Right_exit_Num)))
+Ve=(Right_exit_Num+(Gamma*0))
+
+</script>
+<p>
+  Consider the gridworld MDP for which <b>Left</b> and <b>Right </b>actions are 100% successful. Specifically, the available actions in each state are to move to the neighboring grid squares. From state <b>a</b>, there is also an exit action available, which results in going to the terminal state and collecting a reward of $Left_exit_Num. Similarly, in state <b>e</b>, the reward for the exit action is $Right_exit_Num. Exit actions are successful 100% of the time.      
+</p>
+  
+  <svg height="120" width="400">
+          <rect width="100%" height="100%" fill="#eee"/>
+     
+      
+      <rect x="20" y="20" width="70" height="50"
+      style="fill:white;stroke:black;stroke-width:1"
+        />
+         <text x="45" y="85" fill="black">a</text>
+     	<text x="45" y="48" fill="black"> $Left_exit_Num</text>
+   
+         
+        <rect x="91" y="20" width="70" height="50"
+      style="fill:white;stroke:black;stroke-width:1"
+        />
+        <text x="115" y="85" fill="black">b</text>
+        
+        <rect x="162" y="20" width="70" height="50"
+      style="fill:white;stroke:black;stroke-width:1"
+        />
+        <text x="190" y="85" fill="black">c</text>
+        
+        <rect x="233" y="20" width="70" height="50"
+      style="fill:white;stroke:black;stroke-width:1"
+        />
+        <text x="258" y="85" fill="black">d</text>
+    
+        
+         <rect x="304" y="20" width="70" height="50"
+      style="fill:white;stroke:black;stroke-width:1"
+        />
+        <text x="330" y="85" fill="black">e</text>
+   		 <text x="330" y="48" fill="black"> $Right_exit_Num</text>
+    </svg>
+ 
+
+<hr/>
+
+  <p>Let the discount factor <b>\(\gamma= $Gamma\)</b> Fill in the following quantities.</p>
+  <table><tr>
+    <numericalresponse answer="$Va" type="ci">
+      <td>
+      <label><b>\(V^*(a) = V_\infty(a) =\)</b></label>
+      <textline size="10" correct_answer="$Va" label="A"/>
+        <solution>
+	<div class="detailed-solution">
+				<p>The optimal action from a is to take the exit action.
+Call t the terminal state.
+                  <b>\(V^*(a) = R(a, exit, t) + \gamma V^*(t) = $Va\)</b></p>
+				
+	</div>
+  </solution>
+    </td>
+      
+ </numericalresponse>
+
+    </tr>
+    <tr>
+  <numericalresponse answer="$Vb" type="ci">
+        <td >
+          <label><b>\(V^*(b) = V_\infty(b) =\)</b></label>
+  <textline size="10" correct_answer="$Vb" label="B"/>
+            <solution>
+	<div class="detailed-solution">
+				<p>From state b, it is quite clear that you should move toward the closer, larger reward at state a.<br />
+				<b>\(V^*(b) = R(b, left, a) + \gamma V^*(a) = $Vb\)</b></p>
+				
+	</div>
+  </solution>
+          
+    </td>
+</numericalresponse>
+    </tr>
+        <tr>
+ <numericalresponse answer="$Vc" type="ci">
+        <td><label><b>\(V^*(c) = V_\infty(c) =\)</b></label>
+  <textline size="10" correct_answer="$Vc" label="C"/>
+          <solution>
+	<div class="detailed-solution">
+				<p>From state c, you are equally close to both rewards, so the optimal action is to move toward the larger reward in state a.<br />
+                  <b>\(V^*(c) = R(c, left, b) + \gamma V^*(b) = $Vc\)</b></p>
+				
+	</div>
+  </solution>
+    </td>
+     
+</numericalresponse>
+          <tr>
+          </tr>
+  <numericalresponse answer="$Vd" type="ci">
+        <td><label><b>\(V^*(d) = V_\infty(d) =\)</b></label>
+  <textline size="10" correct_answer="$Vd" label="D"/>
+          <solution>
+	<div class="detailed-solution">
+				<p>It is not immediately obvious which way we should go from state d, so we must do some calculations first.<br />
+                  <b>\(V^*(d) = max(R(d, left, c) + \gamma V^*(c), R(d, right, e) + \gamma V^*(e)) = $Vd\)</b><br />
+                  Notice that from d, we prefer the closer, smaller reward to the farther, larger reward. This is because our discount factor (0.2) is low enough for us to prefer the closer reward. If our discount factor was higher, we might prefer the farther reward instead.</p>
+				
+	</div>
+  </solution>
+    </td>
+      
+ </numericalresponse>
+    </tr>
+       <tr>
+  <numericalresponse answer="$Ve" type="ci">
+    <td>
+      <label><b>\(V^*(e) = V_\infty(e) =\)</b></label>
+      <textline size="10" correct_answer="$Ve" label="E"/>
+          <solution>
+	<div class="detailed-solution">
+				<p>In state e, we have a similar situation as state d, where we could go for the closer, smaller reward or the farther, larger reward. However, because we know the correct action from state d is "Right", we know that state e will also prefer the closer reward.
+                  <b>\(V^*(e) = R(e, exit, t) + \gamma V^*(t)= $Ve\)</b></p>
+				
+	</div>
+  </solution>
+
+    </td>
+      
+  </numericalresponse>
+  
+    </tr>
+  </table>
+</problem>

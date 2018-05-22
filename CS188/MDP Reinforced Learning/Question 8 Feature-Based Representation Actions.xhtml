@@ -1,0 +1,51 @@
+<!-- Ahmed Ismail Khalid								Zulqarnain
+	 150829												150913
+	 BSCS VI-B											BSCS VI-B
+     ahmedik95316@gmail.com								mustafa.zulqarnain123@gmail.com
+     150829@students.au.edu.pk							150909@students.au.edu.pk    
+	 sheikh.qasim@gmail.com    +923008540838
+
+				EDX Course : Artificial Intelligence				Topic : Reinforcement Learning
+ -->
+
+
+<problem>
+<p>Consider the two Pacman board states presented in two rows below. In each row, the agent considers possible actions to take; these are represented by the images. The agent is using feature-based representation to estimate the \(Q(s,a)\) value of taking an action in a state, and the features the agent uses are:</p>
+<p>\(f_0 =\) 1/(Manhattan distance to closest food + 1)</p>
+<p>\(f_1 =\) 1/(Manhattan distance to closest ghost + 1)</p>
+<p>For example, the feature representation \(f(s=A, a=\textbf{STOP}) = [1/4, 1/4]\).</p>
+
+<br/><br/>
+
+
+  <p><b>State</b> \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(a\)=STOP \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\) \(a\)=RIGHT  \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\) \(a\)=LEFT   \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\) \(a\)=DOWN</p>
+
+  <p>\(\space\) <b>A</b> \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)  <img src="/static/hw5_q8_i1.png" align="middle" width="170"/> \(\space\)\(\space\)\(\space\)\(\space\) <img src="/static/hw5_q8_i2.png" align="middle" width="170"/> \(\space\)\(\space\)\(\space\)\(\space\) <img src="/static/hw5_q8_i3.png" align="middle" width="170"/> \(\space\)\(\space\)\(\space\)\(\space\) <img src="/static/hw5_q8_i4.png" align="middle" width="170"/> </p>
+
+<p>\(f(s,a)\) \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)[0.25, 0.25] \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\) [1/3, 0.2]\(\space\)\(\space\) \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)[0.2, 1/3] \(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)[1/3, 1/3]</p>
+
+<br/><br/>
+
+
+<p>The agent picks the action according to \( \arg\max_a Q(s,a) = w^T f(s,a) = w_0 f_0 (s,a) + w_1 f_1 (s,a) \), where the features \(f_i(s,a)\) are as defined above, and \(w\) is a weight vector. Using the weight vector \(w = [0.2, 0.5] \), which action, of the ones shown above, would the agent take from state A?</p>
+<multiplechoiceresponse>
+  <choicegroup type="MultipleChoice">
+    <choice correct="false">STOP</choice>
+    <choice correct="false">RIGHT</choice>
+    <choice correct="false">LEFT</choice>
+    <choice correct="true">DOWN</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+
+<p>Using the weight vector \(w = [0.2, -1] \), which action, of the ones shown above, would the agent take from state A?</p>
+<multiplechoiceresponse>
+  <choicegroup type="MultipleChoice">
+    <choice correct="false">STOP</choice>
+    <choice correct="false">RIGHT</choice>
+    <choice correct="false">LEFT</choice>
+    <choice correct="true">DOWN</choice>
+  </choicegroup>
+</multiplechoiceresponse>
+
+
+</problem>

@@ -1,0 +1,39 @@
+<!-- Ahmed Ismail Khalid								Zulqarnain
+	 150829												150913
+	 BSCS VI-B											BSCS VI-B
+     ahmedik95316@gmail.com								mustafa.zulqarnain123@gmail.com
+     150829@students.au.edu.pk							150909@students.au.edu.pk 
+     sheikh.qasim@gmail.com +923008540838	 
+
+				EDX Course : Artificial Intelligence				Topic : Reinforcement Learning
+ -->
+
+
+<problem>
+<choiceresponse>
+  <b>In general, for Q-Learning to converge to the optimal Q-values....</b>
+<checkboxgroup>
+    <choice correct="false">It is necessary that every state-action pair is visited infinitely often.
+      <choicehint selected="true"><b><br/><br/>(Option 1) In realistic situations, we cannot possibly learn about every single state!</b> <ul> <li>Too many states to visit them all in training</li> <li>Too many states to hold the q-tables in memory</li> </ul>  <b>Instead, we want to generalize :</b> <ul> <li>Learn about some small number of training states from experience</li> <li>Generalize that experience to new, similar states</li> <li>This is a fundamental idea in machine learning, and we’ll see it over and over again</li> </ul>  <br/>
+<br/><br/><br/></choicehint>
+</choice>
+    <choice correct="true">It is necessary that the learning rate \(\alpha\) (weight given to new samples) is decreased to \(0\) over time.
+      <choicehint selected="false"><b>(Option 2) We want to reduce the learning rate to ensure that the actions are properly learned</b>
+<br/><br/><br/><br/></choicehint>
+</choice>
+    <choice correct="false">It is necessary that the discount \(\gamma\) is less than \(0.5\)
+      <choicehint selected="true"><b>(Option 3) We want to have a small discount rate so that the rewards are not reduced in value over time if the action is taken later in time but it is not neccessary to have a discount rate less than 0.5</b>
+<br/><br/><br/><br/></choicehint>
+</choice>
+    <choice correct="true">It is necessary that actions get chosen according to \(\arg\max_a Q(s,a)\).
+      <choicehint selected="false"><b> (Option 4) We want to make sure that the actions are taken in such a way that the utility is maximized</b>
+</choicehint></choice>
+  </checkboxgroup>
+</choiceresponse>
+<demandhint>
+  <hint>Think Realistic Situation. Generalization??</hint>
+  <hint>Number Of States To Be Holding Q-Tables In Memory</hint>
+  <hint>Utility Function : What Is Desired</hint>
+  <hint>Proper Learning Of Actions</hint>
+</demandhint>
+</problem>

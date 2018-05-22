@@ -1,0 +1,221 @@
+<!-- Ahmed Ismail Khalid								Zulqarnain
+	 150829												150913
+	 BSCS VI-B											BSCS VI-B
+     ahmedik95316@gmail.com								mustafa.zulqarnain123@gmail.com
+     150829@students.au.edu.pk							150909@students.au.edu.pk
+     sheikh.qasim@gmail.com +923008540838	 
+
+				EDX Course : Artificial Intelligence				Topic : Reinforcement Learning
+ -->
+
+
+
+<problem>
+
+<p><i>We recommend you work out the solutions to the following questions on a sheet of scratch paper, and then enter your results into the answer boxes.</i></p>
+<p>Consider an MDP with 3 states, <b>A</b>, <b>B</b> and <b>C</b>; and 2 actions <b>Clockwise</b> and <b>Counterclockwise</b>. We do not know the transition function or the reward function for the MDP, but instead, we are given with samples of what an agent actually experiences when it interacts with the environment (although, we do know that we do not remain in the same state after taking an action). In this problem, instead of first estimating the transition and reward functions, we will directly estimate the Q function using Q-learning.  
+
+<b>Assume, the discount factor, \(\gamma\) is 0.5 and the step size for Q-learning, \(\alpha\) is 0.5</b></p>
+
+<script type="loncapa/python">
+import random
+import numpy as np
+
+RandomList = [-5.0, -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0]
+
+
+# creating variables to pick rewards randomly
+a_ccw_r1 = random.choice(RandomList)
+
+b_cw_r1 = random.choice(RandomList)
+
+gamma = 0.5
+alpha = 0.5
+
+##########################
+#    Table 2 Values      #
+##########################
+# Generate floating values from -4 to 0
+t2_a_cw = np.random.uniform(-4,0)
+t2_a_ccw = np.random.uniform(-4,0)
+t2_b_cw = np.random.uniform(-4,0)
+t2_b_ccw = np.random.uniform(-4,0)
+t2_c_cw = np.random.uniform(-4,0)
+t2_c_ccw = np.random.uniform(-4,0)
+
+# Round the generated values to 2 decimal places
+T2_a_cw = round(t2_a_cw,2)
+T2_a_ccw = round(t2_a_ccw,2)
+T2_b_cw = round(t2_b_cw,2)
+T2_b_ccw = round(t2_b_ccw,2)
+T2_c_cw = round(t2_c_cw,2)
+T2_c_ccw = round(t2_c_ccw,2)
+
+
+max_a = max(T2_a_cw,T2_a_ccw)
+max_b = max(T2_b_cw,T2_b_ccw)
+max_c = max(T2_c_cw,T2_c_ccw)
+
+sample_a = a_ccw_r1 + (0.5 * max_a)
+sample_b = b_cw_r1 + (0.5 * max_b)
+sample_c = 0 + (0.5 * max_c)
+
+
+q_a_cw = ((1 - alpha) * T2_a_cw) + (alpha * sample_a)
+q_a_ccw = ((1 - alpha) * T2_a_ccw) + (alpha * sample_a)
+q_b_cw = ((1 - alpha) * T2_b_cw) + (alpha * sample_b)
+q_b_ccw = ((1 - alpha) * T2_b_ccw) + (alpha * sample_b)
+q_c_cw = ((1 - alpha) * T2_c_cw) + (alpha * sample_c)
+q_c_ccw = ((1 - alpha) * T2_c_ccw) + (alpha * sample_c)
+
+Q_A_CW = round(q_a_cw,2)
+Q_A_CCW = round(q_a_ccw,2)
+Q_B_CW = round(q_b_cw,2)
+Q_B_CCW = round(q_b_ccw,2)
+Q_C_CW = round(q_c_cw,2)
+Q_C_CCW = round(q_c_ccw,2)
+
+
+</script>
+
+
+<br/><br/>
+
+
+
+<p>Our current Q function, \(Q(s,a)\), is as follows.</p>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: center;    
+}
+</style>
+  
+  
+<table style="width:40%">
+  <tr>
+    <th><b></b></th>
+    <th><b>A</b></th>
+    <th><b>B</b></th>
+    <th><b>C</b></th>
+  </tr>
+  <tr>
+    <th>Clockwise</th>
+    <th>$T2_a_cw</th>
+    <th>$T2_b_cw</th>
+    <th>$T2_c_cw</th>
+    </tr>
+  <tr>
+    <th>Counterclockwise</th>
+    <th>$T2_a_ccw</th>
+    <th>$T2_b_ccw</th>
+    <th>$T2_c_ccw</th>
+  </tr>
+</table>
+
+<br/><br/>
+
+<p>The agent encounters the following samples.</p>
+
+<table style="width:40%">
+  <tr>
+    <th><b>s</b></th>
+    <th><b>a</b></th>
+    <th><b>s'</b></th>
+    <th><b>r</b></th>
+  </tr>
+  <tr>
+    <th>A</th>
+    <th>Clockwise</th>
+    <th>B</th>
+    <th>$b_cw_r1</th>
+    </tr>
+  <tr>
+    <th>B</th>
+    <th>Counterclockwise</th>
+    <th>A</th>
+    <th>$a_ccw_r1</th>
+  </tr>
+</table>
+
+<br/><br/>
+
+<p>Fill in the values for \(Q_{k+1}(s,a)\). Enter Values To 2 Decimal Places</p>
+
+
+<table style="width:20%">
+ <tr>
+   <th><b></b></th>
+   <th><b> A </b></th>
+   <th><b> B </b></th>
+   <th><b> C </b></th>
+ </tr>
+
+ <tr>
+   <th><b>Clockwise</b></th>
+   <stringresponse answer="$q_a_cw" type="ci">
+        <th>
+          <textline size="10"/>
+        </th>
+   </stringresponse>
+   
+   <stringresponse answer="$q_b_cw" type="ci">
+        <th>
+          <textline size="10"/>
+        </th>
+   </stringresponse>
+   
+   <stringresponse answer="$q_c_cw" type="ci">
+        <th>
+          <textline size="10"/>
+        </th>
+   </stringresponse>
+   
+ </tr>
+  
+  <tr>
+   <th><b>Counterclockwise</b></th>
+   <stringresponse answer="$q_a_ccw" type="ci">
+        <th>
+          <textline size="10"/>
+        </th>
+   </stringresponse>
+   
+   <stringresponse answer="$q_b_ccw" type="ci">
+        <th>
+          <textline size="10"/>
+        </th>
+   </stringresponse>
+   
+   <stringresponse answer="$q_c_ccw" type="ci">
+        <th>
+          <textline size="10"/>
+        </th>
+   </stringresponse>
+   
+ </tr>
+   
+</table>
+
+<solution>
+  <div class="detailed-solution">
+    <p>Each answer is a 2 step answer, the first is where we calculate a new sample estimate and then use this calculated sample in the next step.</p>
+    <p>In order to calculate a new sample estimate use the following formula :</p>
+    <p>\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)<b>sample = R(s,a,s') + \(\gamma\) \(\max_{a'}\) Q(s',a')</b></p>
+    <p>Then simply incorporate the new estimate into a running average as below :</p>
+    <p>\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)<b>Q(s,a) \(\leftarrow\) (1 - \(\alpha\))Q(s,a) + (\(\alpha\))[<i>sample</i>]</b></p>
+  </div>
+</solution>
+
+<solution>
+  <div class="detailed-solution">
+    <p> NOTE : AS THE ENCOUNTERED SAMPLE DOES NOT CONTAIN ANY TRANSITION FOR STATE C, HENCE STATE C WILL HAVE NO REWARDS, THAT IS THE REWARD VALUE FOR C FOR BOTH CLOCKWISE AND COUNTERCLOCKWISE ACTIONS WILL BE 0</p>
+  </div>
+</solution>
+
+</problem>

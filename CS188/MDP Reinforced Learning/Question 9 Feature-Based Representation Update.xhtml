@@ -1,0 +1,124 @@
+<problem>
+
+
+
+
+<script type="loncapa/python">
+
+#################
+#     PART 1    #
+#################
+f1_s_a_west = 0.5
+f2_s_a_west = 1
+
+f1_s_a_south = 1
+f2_s_a_south = 2
+
+w1 = 1
+w2 = 10
+
+
+q_s_west = (w1 * f1_s_a_west) + (w2 * f2_s_a_west)
+q_s_south = (w1 * f1_s_a_south) + (w2 * f2_s_a_south)
+
+Q_S_WEST = round(q_s_west,2)
+Q_S_SOUTH = round(q_s_south,2)
+
+
+</script>
+
+
+
+<p>Consider the following feature based representation of the Q-function: \[ Q(s,a) = w_1 f_1(s,a) + w_2 f_2(s,a) \] with \[f_1(s,a) = 1 / (\text{Manhattan distance to nearest dot after having executed action } a \text{ in state } s)\] \[f_2(s,a) = (\text{Manhattan distance to nearest ghost after having executed action } a \text{ in state } s)\]</p>
+
+<br/><br/><br/>
+
+<p><font size="5"><b>Part 1</b></font></p>
+<p>Assume \(w_1 = 1\), \(w_2 = 10\), \(f_{1}(s,West) = 0.5\), \(f_{1}(s,West) = 1\), \(f_{1}(s,South) = 0.5\) and \(f_{1}(s,West) = 2\). For the state \(s\) shown below, find the following quantities. Assume that the red and blue ghosts are both sitting on top of a dot.</p>
+
+<br/>
+	
+<p>\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)<img src ="/static/hw5_q9_p1.png" width="300"/></p>
+
+<br/><br/>
+
+<p><b>\(Q(s, West) = \)</b></p>
+<numericalresponse answer="$Q_S_WEST" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<p><b>\(Q(s, South) = \)</b></p>
+<numericalresponse answer="$Q_S_SOUTH" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+
+<br/><br/><br/><br/>
+
+<p><font size="5"><b>Part 2</b></font></p>
+<p>Assume Pac-Man moves West. This results in the state \(s'\) shown below.</p>
+
+<br/>
+
+<p>\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)\(\space\)<img src="/static/hw5_q9_p2.png" width="300"/></p>
+
+<br/><br/>
+
+<p>The reward for this transition is \(r = +10 - 1 = 9\) (+10: for food pellet eating, -1 for time passed). Fill in the following quantities. Assume that the red and blue ghosts are both sitting on top of a dot.</p>
+
+<br/><br/>
+
+<p><b>\(Q(s', West) =\)</b></p>
+<numericalresponse answer="2" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<p><b>\(Q(s', East) =\)</b></p>
+<numericalresponse answer="2" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<p>What is the sample value (assuming \(\gamma = 1\)), 
+\(\text{sample } = [ r + \gamma \max_{a'} Q(s',a') ] = \)</p>
+<numericalresponse answer="2" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+
+<br/><br/><br/>
+
+
+
+<p><font size="5"><b>Part 3</b></font></p>
+<p>Now let's compute the update to the weights. Let \(\alpha = 0.5\).</p>
+
+<br/><br/>
+
+<p><b>\(\text{difference } = [ r + \gamma \max_{a'} Q(s',a') ] - Q(s,a) = \)</b></p>
+<numericalresponse answer="2" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<p><b>\(w_1 \leftarrow w_1 + \alpha \left(\text{difference}\right) f_1(s,a) = \)</b></p>
+<numericalresponse answer="2" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+<p><b>\(w_2 \leftarrow w_2 + \alpha \left(\text{difference}\right) f_2(s,a) = \)</b></p>
+<numericalresponse answer="2" type="ci" >
+  <textline size="20"/>
+</numericalresponse>
+
+<br/>
+
+</problem>
