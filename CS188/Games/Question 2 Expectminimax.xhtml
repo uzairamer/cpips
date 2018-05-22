@@ -1,0 +1,162 @@
+<!-- sheikh.qasim@gmail.com +923008540838  
+
+				EDX Course : Artificial Intelligence CS188 Berkeley				Topic : Search
+ -->
+<problem>
+
+<problem>
+<p>
+Consider the game tree shown below. As in the previous problem, triangles that point up, such as the top node (root), represent choices for the maximizing player; triangles that point down represent choices for the minimizing player. The circular nodes represent chance nodes in which each of the possible actions may be taken with equal probability. The square nodes at the bottom represent leaf nodes. Assuming both players act optimally, carry out the expectiminimax search algorithm. Enter the values for the letter nodes in the boxes below the tree.      
+</p>	
+
+<hr/>
+<script type="loncapa/python">
+import random
+l = random.sample(range(-3, 9), 12)
+for i in range(len(l)):
+	l[i] = 3*l[i]
+
+A = int((l[0]+l[1]+l[2])/3)
+B = int((l[3]+l[4]+l[5])/3)
+C = int((l[6]+l[7]+l[8])/3)
+D = int((l[9]+l[10]+l[11])/3)
+E = min(A,B)
+F = min(C,D)
+G = max (E,F)
+l0 = l[0]
+l1 = l[1]
+l2 =l[2]
+l3 = l[3]
+l4 = l[4]
+l5 = l[5]
+l6 = l[6]
+l7 = l[7]
+l8 = l[8]
+l9 = l[9]
+l10 = l[10]
+l11 = l[11]
+
+  
+def check_answer(expect, ans):  
+  return int(ans) == int(expect) 
+</script>
+<p>
+	
+ <svg height="250" width="600">
+          <rect width="100%" height="100%" fill="#eee"/>
+          <polygon points="300,50 320,10 345,50" style="fill:white;stroke:black;stroke-width:1"/>
+          <polygon points="150,80 210,80 180,120" style="fill:white;stroke:black;stroke-width:1"/>
+          <polygon points="430,80 490,80 460,120" style="fill:white;stroke:black;stroke-width:1"/>
+          
+          <circle cx="110" cy="160" r="20" style="fill:white;stroke:black;stroke-width:1"/>
+          <circle cx="250" cy="160" r="20" style="fill:white;stroke:black;stroke-width:1"/>
+          <circle cx="390" cy="160" r="20" style="fill:white;stroke:black;stroke-width:1"/>
+          <circle cx="525" cy="160" r="20" style="fill:white;stroke:black;stroke-width:1"/>
+
+          <rect x="50" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="95" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="140" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="190" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="235" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="280" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="330" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="375" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="420" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="465" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="510" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          <rect x="555" y="200" width="30" height="30" style="fill:white;stroke:black;stroke-width:1"/>
+          
+          <line x1="305" y1="35" x2="180" y2="80" style="stroke:black;stroke-width:1"/>       
+          <line x1="335" y1="35" x2="455" y2="80" style="stroke:black;stroke-width:1"/>
+          <line x1="110" y1="140" x2="160" y2="95" style="stroke:black;stroke-width:1"/>
+          <line x1="245" y1="140" x2="200" y2="95" style="stroke:black;stroke-width:1"/>
+          <line x1="385" y1="140" x2="442" y2="95" style="stroke:black;stroke-width:1"/> 
+          <line x1="525" y1="140" x2="480" y2="95" style="stroke:black;stroke-width:1"/>
+          <line x1="90" y1="170" x2="65" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="110" y1="180" x2="110" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="125" y1="170" x2="155" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="235" y1="170" x2="205" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="250" y1="180" x2="250" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="265" y1="170" x2="295" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="390" y1="180" x2="390" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="370" y1="170" x2="345" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="405" y1="170" x2="435" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="525" y1="180" x2="525" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="510" y1="170" x2="480" y2="200" style="stroke:black;stroke-width:1"/>
+          <line x1="540" y1="175" x2="570" y2="200" style="stroke:black;stroke-width:1"/>
+          
+          <text x="105" y="165" fill="black">A</text>
+          <text x="245" y="165" fill="black">B</text>
+          <text x="385" y="165" fill="black">C</text>
+          <text x="520" y="165" fill="black">D</text>
+          <text x="315" y="40" fill="black">G</text>
+          <text x="175" y="100" fill="black">E</text>
+          <text x="455" y="100" fill="black">F</text>            
+          <text x="60" y="220" fill="black">$l0</text>
+          <text x="105" y="220" fill="black">$l1</text>
+          <text x="150" y="220" fill="black">$l2</text>
+          <text x="200" y="220" fill="black">$l3</text>
+          <text x="245" y="220" fill="black">$l4</text>
+          <text x="290" y="220" fill="black">$l5</text>
+          <text x="340" y="220" fill="black">$l6</text>
+          <text x="385" y="220" fill="black">$l7</text>
+          <text x="430" y="220" fill="black">$l8</text>
+          <text x="470" y="220" fill="black">$l9</text>
+          <text x="515" y="220" fill="black">$l10</text>
+          <text x="560" y="220" fill="black">$l11</text>
+          
+      </svg>  
+  </p>	
+  <table><tr>
+  <customresponse cfn="check_answer" expect="$A">
+    <td width = "5%">
+      <label>A</label>
+      <textline size="5" correct_answer="$A" label="A"/>
+    </td>
+  </customresponse>
+  <customresponse cfn="check_answer" expect="$B">
+        <td width = "5%" >
+
+  <label>B</label>
+  <textline size="10" correct_answer="$B" label="B"/>
+    </td>
+  </customresponse> 
+  <customresponse cfn="check_answer" expect="$C">
+        <td width = "10">
+
+  <label>C</label>
+  <textline size="10" correct_answer="$C" label="C"/>
+    </td>
+  </customresponse>      
+  <customresponse cfn="check_answer" expect="$D">
+        <td width = "10">
+
+    <label>D</label>
+  <textline size="10" correct_answer="$D" label="D"/>
+    </td>
+  </customresponse>
+  <customresponse cfn="check_answer" expect="$E">
+    <td width = "10">
+      <label>E</label>
+      <textline size="10" correct_answer="$E" label="E"/>
+    </td>
+  </customresponse>  
+  <customresponse cfn="check_answer" expect="$F">
+    <td width = "10">
+      <label>F</label>
+      <textline size="10" correct_answer="$F" label="F"/>
+    </td>
+  </customresponse>  <customresponse cfn="check_answer" expect="$G">
+    <td>
+      <label>G</label>
+      <textline size="10" correct_answer="$G" label="G"/>
+    </td>
+  </customresponse>
+    </tr></table>
+  <solution>
+	<div class="detailed-solution">
+				<p>Explanation</p>
+				<p>The minimizer needs to choose the smallest value and the maximizer needs to choose the highest.</p>
+	</div>
+  </solution>
+</problem>
