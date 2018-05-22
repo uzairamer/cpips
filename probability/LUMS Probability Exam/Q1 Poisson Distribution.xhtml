@@ -1,0 +1,91 @@
+<!-- sheikh.qasim@gmail.com +923008540838  
+
+				LUMS Probability course exam 2004
+ -->
+<problem>
+<problem>
+<script type="loncapa/python">
+from random import randint 
+import math
+ 
+
+def compare(f1,f2,tol=0.0001):
+  return abs(f1 - f2) &lt; tol
+  
+def test_answer(expected,answer):
+  return compare(eval(answer.strip()),float(expected.strip()))  
+ 
+  
+Y0 = 2
+Y1 = 9
+
+Y2 = randint(Y0,Y1) 
+Y3 = randint(Y0+1,Y1-1)
+Y4 = randint( Y1-Y0, Y0+Y1)
+
+A_0 = round(math.exp(-Y2)*(Y2^Y3)/math.factorial(Y3),3)
+hpd = round(Y4/24,3)
+A_1 = round(math.exp(-Y2*hpd),3)
+
+
+
+</script>
+<p>
+Power surges occur at a generating station as a Poisson process. On average, there are <b>$Y2</b>  power surges per day.  Determine the probability that exactly <b>$Y3</b> power surges occur on a given day and the probability that the time between two power surges is more than <b>$Y4</b> hours.
+</p>
+<multiplechoiceresponse>
+    <label>Part a: Select the correct formula for Poisson distribution from the following</label>
+    
+    <choicegroup type="MultipleChoice">
+      <choice correct="false"><description>\(P(x) = \frac{{e^{ - \lambda }x! }}{{\lambda ^x}} \)</description>
+        
+      </choice>
+      <choice correct="true"><description> \(P(x) = \frac{{e^{ - \lambda } \lambda ^x }}{{x!}} \)</description>
+        
+      </choice>
+      <choice correct="false"><description>\(P(x) = \frac{{x!}} {{e^{ - \lambda } \lambda ^x }}\)</description>
+        
+      </choice>
+      <choice correct="false"><description>\(P(x) = \frac{{e^{ \lambda } \lambda ^x }}{{x!}} \)</description>
+      </choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+
+  <p>Part b: Determine the probability that exactly <b>$Y3</b> power surges occur on a given day</p>
+  <p>
+  <table>
+		<tbody>
+		  <tr>What is the value of \(\lambda\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y2"><textline size="30" correct_answer="$Y2"  /></customresponse></tr>
+          <tr>What is the value of \(x\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y3"><textline size="30" correct_answer="$Y3"  /></customresponse></tr>
+          <tr>What is the probability that exactly <b>$Y3</b> power surges occur on a given day?</tr>
+		  <tr><customresponse cfn="test_answer" expect="$A_0"><textline size="30" correct_answer="$A_0"  /></customresponse></tr>
+        </tbody>
+  </table>
+  </p>
+  <p>Part c: Determine the probability that the time between two power surges is more than <b>$Y4</b> hours</p>
+  <p>
+    <table>
+		<tbody>
+           <tr>What is the value of \(x\)</tr>
+		   <tr><customresponse cfn="test_answer" expect="$hpd"><textline size="30" correct_answer="$hpd"  /></customresponse></tr>
+           <tr>What is the probability that the time between two power surges is more than <b>$Y4</b> hours?</tr>
+		   <tr><customresponse cfn="test_answer" expect="$A_1"><textline size="30" correct_answer="$A_1"  /></customresponse></tr>		
+        </tbody>
+	</table>
+ 
+</p>
+<solution>
+  <p><b>Explanation:</b></p>
+  <p>
+Poisson process is one of the most important random processes in probability theory. It is widely used to model random points in time and space, such as the times of radioactive emissions, the arrival times of customers at a service center, and the positions of flaws in a piece of material.
+   </p>
+  <p>For part a correct formula for Poisson distribution is <description> \(P(x) = \frac{{e^{ - \lambda } \lambda ^x }}{{x!}} \)</description>   </p>
+  <p>  
+  For part b put \( \lambda = \) $Y2 and \(x =\) $Y3 in <description> \(P(x) = \frac{{e^{ - \lambda } \lambda ^x }}{{x!}} \)</description> and </p>
+  <p>   For part c put \( \lambda = \) $Y2 and since units of \( \lambda \) are hours per day \(x =\) $Y4 /24  in <description>\(P(x) = e^{ - (\lambda x ) } \)</description>
+  </p>
+ 
+</solution>
+</problem>

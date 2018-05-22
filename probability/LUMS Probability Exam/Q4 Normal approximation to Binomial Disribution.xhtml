@@ -1,0 +1,109 @@
+<!-- sheikh.qasim@gmail.com +923008540838  
+
+				LUMS Probability course exam 2004
+ -->
+<problem>
+<script type="loncapa/python">
+from random import randint 
+import math
+from scipy.stats import norm
+ 
+
+def compare(f1,f2,tol=0.0001):
+  return abs(f1 - f2) &lt; tol
+  
+def test_answer(expected,answer):
+  return compare(eval(answer.strip()),float(expected.strip()))  
+ 
+  
+Y0 = 80
+Y1 = 90
+
+Y2 = randint(Y0,Y1)
+p = round (Y2/100,2)           # probability of success; bicycles produced without defect
+Y4 = randint( 200, 300)        # number of experiments or number of bicycles poduced
+#Y2 = 0.68
+Y3 = 100-Y2                      # probability of failure
+#Y4 = 250                       
+#p = 0.68
+mu = Y4*p
+sigma = round((Y4*p *(1-p)) ** 0.5,2) 
+T5 = randint (88,95)
+Y5 = int(T5*Y4/100)            # x; number of success desired, number of bicycles expected to be OK
+#Y5 = 180
+Y6 = Y5-1
+Z = (Y6-mu)/sigma
+A_0 = round(1.0-norm.cdf(Z),3)
+
+
+
+
+</script>
+<p>
+ 
+  Suppose that a factory produces bicycles with a success rate of <b> $Y2% </b>.  That is <b> $Y2% </b> of the bicycles can be sold and  <b> $Y3% </b> can’t be passed on to stores. <b> $Y4 </b> bicycles are produced by the factory each day.  What is the probability that on a given day at least <b> $Y5 </b> of the <b> $Y4 </b> bicycles produced will be suitable for sale?
+
+</p>
+<multiplechoiceresponse>
+    <label>Part a: Select the correct formula for Binomial distribution from the following</label>
+    
+    <choicegroup type="MultipleChoice">
+      <choice correct="false"><description>\(P(x) = \frac{{(n-x)! }}{{n! x!}} \)</description><description>\(  (p) ^ x  (1-p) ^ { n-x} \)</description>
+        
+      </choice>
+      <choice correct="true"><description>\(P(x) = \frac{{n! }}{{(n-x)! x!}} \)</description><description>\(  (p) ^ x  (1-p) ^ { n-x} \)</description>
+        
+      </choice>
+      <choice correct="false"><description>\(P(x) = \frac{{n! }}{{(n-x)! x!}} \)</description><description>\(  (p) ^ {n-x}  (1-p) ^ { x} \)</description>
+        
+      </choice>
+      <choice correct="false"><description>\(P(x) = \frac{{(n-x)! x!}}{{n! }} \)</description><description>\(  (p) ^ x  (1-p) ^ { n-x} \)</description>
+      </choice>
+    </choicegroup>
+  </multiplechoiceresponse>
+
+  <p>Part b: Determine the probability that on a given day at least <b> $Y5 </b> of the <b> $Y4 </b> bicycles produced will be suitable for sale.  For the given Bernouilli experiment</p>
+  <p>
+  <table>
+		<tbody>
+		  <tr>What is the value of \(n\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y4"><textline size="30" correct_answer="$Y4"  /></customresponse></tr>
+          <tr>What is the value of \(x\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$Y5"><textline size="30" correct_answer="$Y5"  /></customresponse></tr>
+          <tr>What is the value of \(p\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$p"><textline size="30" correct_answer="$p"  /></customresponse></tr>
+          <tr>What is the value of mean \( \mu \)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$mu"><textline size="30" correct_answer="$mu"  /></customresponse></tr>
+          <tr>What is the value of standard deviation \( \sigma\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$sigma"><textline size="30" correct_answer="$sigma"  /></customresponse></tr>
+          <tr>What is the Z-score for \(x-1\)</tr>
+		  <tr><customresponse cfn="test_answer" expect="$sigma"><textline size="30" correct_answer="$sigma"  /></customresponse></tr>
+          <tr>What is the probability that that on a given day at least <b> $Y5 </b> of the <b> $Y4 </b> bicycles produced will be suitable for sale?</tr>
+		  <tr><customresponse cfn="test_answer" expect="$A_0"><textline size="30" correct_answer="$A_0"  /></customresponse></tr>
+        </tbody>
+  </table>
+  </p>
+  
+<solution>
+  <p><b>Explanation:</b></p>
+  <p>
+Formula for Binomial distribution is <description>\(P(x) = \frac{{n! }}{{(n-x)! x!}} \)</description><description>\(  (p) ^ x  (1-p) ^ { n-x} \)</description>.  In this example \(n = \) $Y4, \(x = \) $Y5, \(p = \) $p, 
+</p>
+<p>
+\(\mu= n * p\), \( \mu \) is mean number of bicycles produce that are suitable for sale
+  </p>
+<p>
+Standard deviation \( \sigma = \sqrt { \mu (1-p)} \)
+  </p>
+
+<p>
+
+   </p>
+  <p>formula for probability density for normal distribution is <description>\(f(x) = \frac{{1 }}{{\sqrt{2\pi}\sigma}} \)</description><description>\(  e ^{ -\frac{{1 }}{{2}} ( \frac{{x-\mu }}{{\sigma}}  )^2  } \)</description> 
+    </p>
+  <p>  
+  For part b  Z-score  <description>\(Z = \frac{{(X-\mu) }}{{\sigma}} \)</description></p>
+ 
+ 
+</solution>
+</problem>
