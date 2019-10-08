@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The Open edX platform allows course authors to create assessment problems with customized and/or randomized inputs values and answers. Course authors can write Python code to customize these problems. This has a couple of obvious benefits:
+The Open edX platform allows course authors to create assessment problems with customized and/or randomized input values and answers. Course authors can write Python code to customize these problems. This has a couple of obvious benefits:
 
 1. Students can attempt the same problem multiple times. Because the inputs can be randomized, its harder to get to the right answer by eliminating wrong answers with multiple retries.
 2. If several students are taking the same assessment, each of them can get a completely different version of the same problem.
